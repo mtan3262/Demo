@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<!-- ======================================== Form Bean Definitions -->
+	<form-beans>
+        <form-bean name="loginRequest" type="examples.form.LoginForm"/>
+        <form-bean name="addRequest" type="examples.form.AddForm"/>
+    </form-beans> 
+	<!-- ================================= Global Exception Definitions -->
+
+	<global-exceptions>
+	</global-exceptions>
+
+	<!-- =================================== Global Forward Definitions -->
+
+	<global-forwards>
+		<forward name="success"  path="/success.jsp"/>
+	</global-forwards>
+
+	<!-- =================================== Action Mapping Definitions -->
+ <action-mappings>
+        <action input="/login.jsp" path="/login" type="examples.action.impl.LoginActionImpl" name="loginRequest">
+            <forward name="success" path="/success.jsp"/>
+            <forward name="failure" path="/failure.jsp"/>       
+        </action>
+        <action input="/boook.jsp" path="/book" type="examples.action.impl.BookActionImpl" name="bookRequest">
+            <forward name="success" path="/book.jsp"/>
+              
+        </action>
+        <action input="/add.jsp" path="/add" type="examples.action.impl.AddActionImpl" name="addRequest">
+            <forward name="success" path="/result.jsp"/>
+              
+        </action>
+        <action input="/change.jsp" path="/change" type="examples.action.impl.ChangeActionImpl">
+            <forward name="success" path="/success.jsp"/>
+              <forward name="failure" path="/failure.jsp"/>
+        </action>
+    </action-mappings> 
+	<!-- ===================================== Controller Configuration -->
+
+	<controller catalog="s2struts" />
+
+	<!-- <controller processorClass="org.seasar.struts.processor.S2RequestProcessor"/> 
+		<controller processorClass="org.seasar.struts.processor.S2TilesRequestProcessor"/> 
+		<controller processorClass="org.apache.struts.action.RequestProcessor"/> -->
+
+	<!-- ================================ Message Resources Definitions -->
+
+	<message-resources parameter="application" />
+
+	<!-- ======================================= Plug Ins Configuration -->
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+<!--
+	 <plug-in className="org.seasar.struts.plugin.RegisterActionClassPlugIn"/> -->
+
+	<plug-in
+		className="org.seasar.struts.lessconfig.plugin.AutoStrutsConfigRegisterPlugIn">
+		<set-property property="enableJar" value="false" />
+	</plug-in>
+
+	<plug-in className="org.seasar.struts.hotdeploy.plugin.HotdeployPlugIn" />
+
+</struts-config>
+

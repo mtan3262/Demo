@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org"
+        xmlns:html="http://struts.apache.org/tags-html"
+        xmlns:bean="http://struts.apache.org/tags-bean"
+        xmlns:s2struts="http://www.seasar.org/tags-s2struts"
+        m:noCache="true">
+
+    <m:with id="appBody" replace="false">
+        <s2struts:init action="#{greetingInputInitAction.initialize}"/>
+        <m:doBody />
+    </m:with>
+
+    <html:form m:id="appForm" action="/greeting" method="POST" />
+    <html:select m:id="time" property="time">
+        <html:option value="">Please select</html:option>
+        <html:options name="timeList" />
+    </html:select>
+    <html:submit m:id="goGreeting" >greeting</html:submit>
+
+</m:mayaa>
